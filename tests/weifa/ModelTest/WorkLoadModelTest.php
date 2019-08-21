@@ -19,6 +19,12 @@ class WorkLoadModelTest extends TestCase
 
     public function testEntriesZhiduiDuring()
     {
+        $timePeriod = new TimePeriod('2019-08-14 00:05:00', '2019-08-14 18:05:00');
+
+        $entries = $this->model->entriesManDuring($timePeriod, '435401000010');
+
+        $this->assertGreaterThan(5, count($entries));
+
 
     }
 

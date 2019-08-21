@@ -1,0 +1,199 @@
+
+<title>主页二</title>
+
+<div class="layui-card layadmin-header">
+  <div class="layui-breadcrumb" lay-filter="breadcrumb">
+    <a lay-href="">主页</a>
+    <a><cite>大队现场勤务</cite></a>
+  </div>
+</div>
+
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space15">
+    <div class="layui-col-sm6 layui-col-md3">
+      <div class="layui-card">
+        <div class="layui-card-header">
+          今日
+          <span class="layui-badge layui-bg-blue layuiadmin-badge">日</span>
+        </div>
+        <div class="layui-card-body layuiadmin-card-list">
+          <p class="layuiadmin-big-font">9,999,666</p>
+          <p>
+            总计访问量
+            <span class="layuiadmin-span-color">88万 <i class="layui-icon">&#xe66c;</i></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-sm6 layui-col-md3">
+      <div class="layui-card">
+        <div class="layui-card-header">
+          本周
+          <span class="layui-badge layui-bg-cyan layuiadmin-badge">周</span>
+        </div>
+        <div class="layui-card-body layuiadmin-card-list">
+          <p class="layuiadmin-big-font">33,555</p>
+          <p>
+            新下载
+            <span class="layuiadmin-span-color">10% <i class="layui-icon">&#xe650;</i></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-sm6 layui-col-md3">
+      <div class="layui-card">
+        <div class="layui-card-header">
+          本月
+          <span class="layui-badge layui-bg-green layuiadmin-badge">月</span>
+        </div>
+        <div class="layui-card-body layuiadmin-card-list">
+
+          <p class="layuiadmin-big-font">999,666</p>
+          <p>
+            总收入
+            <span class="layuiadmin-span-color">*** <i class="layui-icon">&#xe659;</i></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-sm6 layui-col-md3">
+      <div class="layui-card">
+        <div class="layui-card-header">
+          今年
+          <span class="layui-badge layui-bg-orange layuiadmin-badge">年</span>
+        </div>
+        <div class="layui-card-body layuiadmin-card-list">
+
+          <p class="layuiadmin-big-font">66,666</p>
+          <p>
+            最近一个月
+            <span class="layuiadmin-span-color">15% <i class="layui-icon">&#xe770;</i></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-sm12">
+      <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">开始时间</label>
+              <div class="layui-input-inline">
+                <input type="text" id="start-time" name="startTime" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">结束时间</label>
+              <div class="layui-input-inline">
+                <input type="text" id="end-time" name="endTime" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">大队</label>
+              <div class="layui-input-inline">
+                <select name="dadui">
+                  <option value="435401000010" selected>新塘</option>
+                  <option value="435402000010">耒阳</option>
+                  <option value="435403000010">蒸湘</option>
+                  <option value="435404000010">衡南</option>
+                  <option value="435405000010">衡阳西</option>
+                  <option value="435406000010">南岳</option>
+                  <option value="435407000010">石鼓</option>
+                  <option value="435408000010">西渡</option>
+                  <option value="435409000010">祁东</option>
+
+                </select>
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+                <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card-body">
+
+          <table class="layui-hide" id="test-table-reload" lay-filter="user"></table>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  layui.use('sample', layui.factory('sample'));
+
+  layui.use(['admin', 'table'], function(){
+    var $ = layui.$
+            ,admin = layui.admin
+            ,view = layui.view
+            ,table = layui.table
+            ,form = layui.form;
+
+    form.render(null, 'app-content-list');
+
+    //监听搜索
+    form.on('submit(LAY-app-contlist-search)', function(data){
+      var field = data.field;
+
+      //执行重载
+      table.reload('test-table-reload', {
+        url:'../index.php/home/workload/dadui'
+        ,where:field
+        ,page: false
+      });
+    });
+
+    //方法级渲染
+    table.render({
+      elem: '#test-table-reload'
+      ,url: '/hyzd/public/index.php/home/workload/dadui'
+      ,totalRow: true
+      ,cols: [[
+        {field:'name', title: '民警',width:160, hide:false , sort: true, totalRowText: '合计:'}
+
+        ,{field:'count', title: '现场', width:120, sort: true,totalRow: true}
+        ,{field:'rank', title: '排名', width:120, sort: true}
+
+
+      ]]
+      ,page: false
+      ,height: 315
+      ,autoSort: true
+      ,initSort:{
+        field: 'count'
+        ,type: 'desc'
+      }
+
+    });
+
+
+
+    $('.layui-btn.layuiadmin-btn-list').on('click', function(){
+      var type = $(this).data('type');
+      active[type] ? active[type].call(this) : '';
+    });
+
+  });
+
+
+  layui.use('laydate', function(){
+    var laydate = layui.laydate;
+
+    //执行一个laydate实例
+    laydate.render({
+      elem: '#start-time' //指定元素
+      ,format: 'yyyy-MM-dd'
+      ,value: '2019-08-01'
+    });
+
+    laydate.render({
+      elem: '#end-time' //指定元素
+      ,format: 'yyyy-MM-dd'
+      ,value: '2019-08-18'
+    });
+  });
+</script>
