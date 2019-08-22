@@ -3,6 +3,7 @@
 namespace app\home\controller;
 
 
+use app\home\domain\LayuiSupport;
 use app\home\domain\TimePeriod;
 use app\home\domain\TranslatorForDadui;
 use app\home\model\ManModel;
@@ -21,7 +22,7 @@ class Workload extends Controller
         $entries = $this->sortCount($entries);
         $entries = $this->addRank($entries);
 
-        return json($this->assembleArrayForLayuiTable($entries));
+        return LayuiSupport::replyForTable($entries);
 
     }
 
@@ -38,22 +39,10 @@ class Workload extends Controller
 
         $entries = $this->sortCount($entries);
         $entries = $this->addRank($entries);
-        $entries = $this->addName($entries);
+        $entries = $this->addNameWithJinghao($entries);
 
 
-        return json($this->assembleArrayForLayuiTable($entries));
-
-    }
-
-    public function assembleArrayForLayuiTable($dataArr)
-    {
-        $result = array();
-        $result['code'] = 0;
-        $result['msg'] = '';
-        $result['count'] = count($dataArr);
-        $result['data'] = $dataArr;
-
-        return $result;
+        return LayuiSupport::replyForTable($entries);
 
     }
 
@@ -62,7 +51,7 @@ class Workload extends Controller
         $timePeriod = new TimePeriod($startTime, $endTime);
         $model = new WorkLoadModel();
         $entries = $model->manWorkLoadCount($timePeriod, $jinghao);
-        return json($this->assembleArrayForLayuiTable($entries));
+        return LayuiSupport::replyForTable($entries);
 
     }
 
@@ -89,7 +78,6 @@ class Workload extends Controller
             }
             $v['rank'] = $rank;
             $result[] = $v;
-
         }
         return $result;
     }
@@ -113,7 +101,7 @@ class Workload extends Controller
         return $result;
     }
 
-    private function addName($entries)
+    private function addNameWithJinghao($entries)
     {
         $result = array();
 
