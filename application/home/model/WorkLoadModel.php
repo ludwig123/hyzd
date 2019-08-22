@@ -65,4 +65,27 @@ class WorkLoadModel
 
         return $sum;
     }
+
+    public function recent30day($dadui)
+    {
+        $aMonthAgo = $this->aMonthAgo();
+        $today = date("Y-m-d",time());
+        $timePeriod = new TimePeriod($aMonthAgo, $today);
+        if (empty($dadui))
+        {
+            $query = "";
+            $workload = $this->zhiduiWorkLoadCount($timePeriod);
+
+        }
+        else
+        {
+            $workload = $this->daduiWorkLoadCount($timePeriod);
+        }
+    }
+
+    public function aMonthAgo(){
+        $aMonthAgo = date("Y-m-d",strtotime("last month"));
+        return $aMonthAgo;
+
+    }
 }
