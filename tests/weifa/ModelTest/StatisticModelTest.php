@@ -14,10 +14,26 @@ class StatisticModelTest extends TestCase
         $this->model = new StatisticModel();
     }
 
+    public function testDayDadui_noDaima()
+    {
+        $timePeriod = new \app\home\domain\TimePeriod('2019-8-1', '2019-9-1');
+        $result = $this->model->dayDadui($timePeriod, '435401000010', '');
+        $this->assertGreaterThan(10, count($result));
+
+    }
+
     public function testDayDadui()
     {
         $timePeriod = new \app\home\domain\TimePeriod('2019-8-1', '2019-9-1');
         $result = $this->model->dayDadui($timePeriod, '435401000010', [13527,46100]);
+        $this->assertGreaterThan(10, count($result));
+
+    }
+
+    public function testDayZhidui()
+    {
+        $timePeriod = new \app\home\domain\TimePeriod('2019-8-1', '2019-9-1');
+        $result = $this->model->dayDadui($timePeriod, '', [13527,46100]);
         $this->assertGreaterThan(10, count($result));
 
     }

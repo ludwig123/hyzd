@@ -19,8 +19,14 @@ class StatisticModel
      */
     public function dayDadui($timePeriod, $dadui, $daimaArr)
     {
+        //适配检索全部代码
+        if (empty($daimaArr)){
+            $mapForDaima[] = ['weifaxingwei', 'like','%'];
+        }
         //因为是两种形式的where 条件形式，必须分开，否则报错
-        $mapForDaima = ['weifaxingwei' => $daimaArr];
+       else $mapForDaima = ['weifaxingwei' => $daimaArr];
+
+
         $mapForDadui[] =  ['faxianjiguan','like', $dadui.'%'];
 
         //此段代码不要修改
@@ -36,7 +42,11 @@ class StatisticModel
 
     public function dayMan($timePeriod, $jinghao, $daimaArr)
     {
-        $mapForDaima = ['weifaxingwei' => $daimaArr];
+        if (empty($daimaArr)){
+            $mapForDaima[] = ['weifaxingwei', 'like','%'];
+        }
+        else $mapForDaima = ['weifaxingwei' => $daimaArr];
+
         $mapForMan[] =  ['zhiqinminjing','=', $jinghao];
 
 
