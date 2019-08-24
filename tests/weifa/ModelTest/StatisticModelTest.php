@@ -21,4 +21,12 @@ class StatisticModelTest extends TestCase
         $this->assertGreaterThan(10, count($result));
 
     }
+
+
+    public function testDayManDefault()
+    {
+        $timePeriod = new \app\home\domain\TimePeriod('2019-8-1', '2019-9-1');
+        $result = $this->model->dayMan($timePeriod, '172579', [13527,46100]);
+        $this->assertGreaterThan(10, count($result));
+    }
 }
