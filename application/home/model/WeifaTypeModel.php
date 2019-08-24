@@ -16,4 +16,14 @@ class WeifaTypeModel
         return db('weifa_alias')->where('alias','=',$alias)->select();
     }
 
+    public function allType()
+    {
+        return db('weifa_alias')->field('alias, count(Id)')->group('alias')->select();
+    }
+
+    public function removeItem()
+    {
+
+    }
+
 }

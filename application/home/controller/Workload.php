@@ -22,7 +22,7 @@ class Workload extends Controller
         $entries = $this->sortCount($entries);
         $entries = $this->addRank($entries);
 
-        return LayuiSupport::replyForTable($entries);
+        return LayuiSupport::replyForTable($page, $limit,$entries);
 
     }
 
@@ -42,7 +42,7 @@ class Workload extends Controller
         $entries = $this->addNameWithJinghao($entries);
 
 
-        return LayuiSupport::replyForTable($entries);
+        return LayuiSupport::replyForTable($page, $limit,$entries);
 
     }
 
@@ -120,6 +120,7 @@ class Workload extends Controller
 
         return $result;
     }
+
 
 
 }

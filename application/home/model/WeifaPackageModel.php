@@ -21,14 +21,15 @@ class WeifaPackageModel
             ->select();
     }
 
-    public function addPackage()
+    public function addPackage($id)
     {
+        db('weifa_package')->delete($id);
 
     }
 
-    public function removePackage()
+    public function remove($id)
     {
-
+        return db('weifa_package')->delete($id);
     }
 
     public function addPackageDetail()

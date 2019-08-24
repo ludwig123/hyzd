@@ -5,6 +5,7 @@ namespace app\home\domain;
 
 
 use app\home\model\WeifaPackageModel;
+use traits\controller\Jump;
 
 class WeifaPackage
 {
@@ -16,6 +17,26 @@ class WeifaPackage
     public function getById($id)
     {
         return ((new WeifaPackageModel())->getById($id));
+    }
+
+    public function remove($id)
+    {
+        $count = (new WeifaPackageModel())->remove($id);
+        if ($count == 1)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public function add($package)
+    {
+
+    }
+
+    public function refresh($package)
+    {
+
     }
 
 }

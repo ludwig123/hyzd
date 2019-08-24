@@ -25,4 +25,9 @@ class WeifaType
         return $result;
     }
 
+    public function getAllType()
+    {
+        return ((new WeifaTypeModel())->allType());
+    }
+
 }

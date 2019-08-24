@@ -18,7 +18,7 @@ class LayuiSupport
 
     }
 
-    public static function replyForTable($page, $limit,$arr)
+    public static function replyForTable($page=1, $limit=10,$arr)
     {
         return json(LayuiSupport::assembleArrayForLayuiTable($page, $limit,$arr));
     }
