@@ -12,7 +12,13 @@ use app\home\model\StatisticModel;
  */
 class Statistic
 {
-    public function countByDayMan($timeperiod, $jinghao,$alias)
+    /** 按月统计单个民警的工作量
+     * @param $timeperiod
+     * @param $jinghao
+     * @param $alias
+     * @return array|\PDOStatement|string|\think\Collection
+     */
+    public function countByDayMan($timeperiod, $jinghao, $alias)
     {
         $model = new StatisticModel();
         $result = $model->dayMan($timeperiod, $jinghao, $alias);
@@ -23,7 +29,7 @@ class Statistic
         return $result;
     }
 
-    public function countByDayDaidui($timeperiod, $dadui,$alias)
+    public function countByDayDaidui($timeperiod, $dadui='',$alias = '')
     {
         $model = new StatisticModel();
         $result = $model->dayDadui($timeperiod, $dadui, $alias);
