@@ -2,6 +2,7 @@
 
 
 use app\admin\domian\Alias;
+use app\admin\model\AliasModel;
 use PHPUnit\Framework\TestCase;
 
 class AliasTest extends TestCase
@@ -17,7 +18,7 @@ class AliasTest extends TestCase
         ,'jiaotongfangshi'=>'K33'
         ,'shiyongxingzhi'=>'R'
         ,'night'=>0
-        ,'weifajifenshu'=>'3');
+        ,'weifajifengshu'=>'3');
 
         self::$alias = new Alias($data);
     }
@@ -28,8 +29,16 @@ class AliasTest extends TestCase
 
     }
 
-    public function testGetShiyongxingzhi()
+    public function testGenerateMultiAlias()
     {
+        $model = new AliasModel();
+        $result = $model->getAliasByName('超速');
+        $multiAlias = array();
+        foreach ($result as $k => $v)
+        {
+            $multiAlias[] = new Alias($v);
 
+        }
+        $this->assertGreaterThan(10,count($multiAlias),'no alias was generate,check database connect');
     }
 }

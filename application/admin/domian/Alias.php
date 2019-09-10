@@ -6,7 +6,24 @@ namespace app\admin\domian;
 
 class Alias
 {
-    private $daimas, $night, $shiyongxingzhi, $jiaotongfangshi, $weifajifenshu;
+    private $daimas, $night, $shiyongxingzhi, $jiaotongfangshi, $weifajifengshu;
+
+
+    public function getDaimas()
+    {
+        return $this->daimas;
+    }
+
+    public function getJiaotongfangshi()
+    {
+        return $this->jiaotongfangshi== '0'? false :$this->jiaotongfangshi;
+    }
+
+
+    public function getWeifajifengshu()
+    {
+        return $this->weifajifengshu;
+    }
 
     function __construct($data)
     {
@@ -14,28 +31,14 @@ class Alias
         $this->night = $data['night'];
         $this->shiyongxingzhi = $data['shiyongxingzhi'];
         $this->jiaotongfangshi = $data['jiaotongfangshi'];
-        $this->weifajifenshu = $data['weifajifenshu'];
+        $this->weifajifengshu = $data['weifajifengshu'];
     }
 
-    /**
-     * @return mixed
-     */
     public function getShiyongxingzhi()
     {
-        return $this->shiyongxingzhi;
+        return $this->shiyongxingzhi== '0'? false : $this->shiyongxingzhi;
     }
 
-    /**
-     * @param mixed $shiyongxingzhi
-     */
-    public function setShiyongxingzhi($shiyongxingzhi): void
-    {
-        $this->shiyongxingzhi = $shiyongxingzhi;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getNight()
     {
         return $this->night == 0? false : true;
