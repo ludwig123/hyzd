@@ -1,9 +1,9 @@
 /** layuiAdmin.pro-v1.2.1 LPPL License By http://www.layui.com/admin/ */
 ;layui.define(function (e) {
     layui.use(["admin", "carousel"], function () {
-        var e = layui.$, a = (layui.admin, layui.carousel), t = (layui.element, layui.device());
-        e(".layadmin-carousel").each(function () {
-            var i = e(this);
+        var thisLayui = layui.$, a = (layui.admin, layui.carousel), t = (layui.element, layui.device());
+        thisLayui(".layadmin-carousel").each(function () {
+            var i = thisLayui(this);
             a.render({
                 elem: this,
                 width: "100%",

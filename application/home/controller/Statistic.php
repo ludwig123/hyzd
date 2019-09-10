@@ -17,8 +17,8 @@ class Statistic
     
     public function monthDadui()
     {
-        $startTime=date('Y-m-01', \time());
-        $endTime= date('Y-m-d', strtotime("$startTime +1 month -1 day"));
+        $startTime=date('Y-m-d', strtotime("last month"));
+        $endTime= date('Y-m-d', strtotime("-1 day"));
 
         $timePeriod = new TimePeriod($startTime, $endTime);
         $data = (new \app\home\domain\Statistic())->countByDayDaidui($timePeriod);

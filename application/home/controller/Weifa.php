@@ -42,4 +42,25 @@ class Weifa extends Controller
     {
         return LayuiSupport::replyForTable($page, $limit,(new WeifaPackage())->getById($id));
     }
+
+    /**
+     * 考核方案选择
+     */
+    public function planList()
+    {
+
+    }
+
+    /**
+     * 违法包下拉列表
+     */
+    public function packageList()
+    {
+
+    }
+
+    public function aliasList()
+    {
+
+    }
 }

@@ -114,7 +114,7 @@ class Workload extends Controller
         }
 
         foreach ($entries as $k => $v) {
-            $v['name'] = array_key_exists($v['zhiqinminjing'], $manList) ? $manList[$v['zhiqinminjing']] : '未识别民警';
+            $v['name'] = array_key_exists($v['zhiqinminjing'], $manList) ? $manList[$v['zhiqinminjing']] : $v['zhiqinminjing'];
             $result[] = $v;
         }
 

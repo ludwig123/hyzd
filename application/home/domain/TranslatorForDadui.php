@@ -37,7 +37,7 @@ class TranslatorForDadui
                 return '祁东';
 
             default :
-                return '未识别大队代码';
+                return $code;
         }
 
     }

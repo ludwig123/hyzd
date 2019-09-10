@@ -103,6 +103,43 @@
       </div>
     </div>
 
+
+
+    <div class="layui-col-sm12">
+      <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto" lay-filter="app-content-list">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">开始时间</label>
+              <div class="layui-input-inline">
+                <input type="text" id="start-time" name="startTime" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">结束时间</label>
+              <div class="layui-input-inline">
+                <input type="text" id="end-time" name="endTime" placeholder="请输入" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <button class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="LAY-app-contlist-search">
+                <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card-body">
+
+          <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-normcol">
+            <div carousel-item id="LAY-index-normcol">
+              <div><i class="layui-icon layui-icon-loading1 layadmin-loading"></i></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -178,5 +215,23 @@ layui.use('laydate', function(){
     ,format: 'yyyy-MM-dd'
     ,value: '2019-08-18'
   });
+});
+
+
+//for echarts
+layui.use(["admin", "carousel"], function () {
+  var e = layui.$, a = (layui.admin, layui.carousel), t = (layui.element, layui.device());
+  e(".layadmin-carousel").each(function () {
+    var i = e(this);
+    a.render({
+      elem: this,
+      width: "100%",
+      arrow: "none",
+      interval: i.data("interval"),
+      autoplay: i.data("autoplay") === !0,
+      trigger: t.ios || t.android ? "click" : "hover",
+      anim: i.data("anim")
+    })
+  })
 });
 </script>
